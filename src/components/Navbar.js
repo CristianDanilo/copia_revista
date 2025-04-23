@@ -1,13 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Link as ScrollLink, scroller } from 'react-scroll';
 import './Navbar.css';
 
 function Navbar() {
   const [click, setClick] = useState(false);
+  const location = useLocation();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const scrollOrNavigate = (id) => {
+    closeMobileMenu();
+    if (location.pathname === '/') {
+      scroller.scrollTo(id, { smooth: true, duration: 500 });
+    } else {
+      // Ir a home y hacer scroll después
+      window.location.href = `/#${id}`;
+    }
+  };
 
   return (
     <nav className='navbar'>
@@ -20,19 +31,24 @@ function Navbar() {
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'>
-            <ScrollLink to='Home' smooth={true} duration={500} className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
               Home
-            </ScrollLink>
+            </Link>
           </li>
           <li className='nav-item'>
-            <ScrollLink to='magazine1' smooth={true} duration={500} className='nav-links' onClick={closeMobileMenu}>
+            <div className='nav-links' onClick={() => scrollOrNavigate('magazine1')}>
               Revista
-            </ScrollLink>
+            </div>
           </li>
           <li className='nav-item'>
-            <ScrollLink to='hero-section' smooth={true} duration={500} className='nav-links' onClick={closeMobileMenu}>
+            <div className='nav-links' onClick={() => scrollOrNavigate('hero-section')}>
               Autores
-            </ScrollLink>
+            </div>
+          </li>
+          <li className='nav-item'>
+            <div className='nav-links' onClick={() => scrollOrNavigate('referencias-home')}>
+              Referencias
+            </div>
           </li>
         </ul>
       </div>
