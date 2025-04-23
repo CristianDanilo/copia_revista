@@ -50,6 +50,11 @@ function Navbar() {
               Referencias
             </div>
           </li>
+          <li className='nav-item'>
+            <Link to='/graphic' className='nav-links' onClick={closeMobileMenu}>
+              Encuesta
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
