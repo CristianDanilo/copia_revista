@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "navbar-dropdown-v1": "file:",
     "process": "^0.11.10",
+    "query-string": "^6.14.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.3.4",
