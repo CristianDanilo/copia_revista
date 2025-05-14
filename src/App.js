@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Services from './components/pages/Services';
 import Graphic from './components/pages/Graphic';
 import Referencias from './components/pages/Referencias';
+import CodigoEticoParte1 from './components/pages/CodigoEticoParte1';
+import CodigoEticoParte2 from './components/pages/CodigoEticoParte2';
+import ReferenciasBibliograficas from './components/pages/ReferenciasBibliograficas';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path='/services' component={Services} />
           <Route path='/graphic' component={Graphic}/>
           <Route path="/referencias" component={Referencias} />
+          <Route path='/codigo-etico-1' component={CodigoEticoParte1} />
+          <Route path='/codigo-etico-2' component={CodigoEticoParte2} />
+          <Route path="/referencias" component={ReferenciasBibliograficas} />
         </Switch>
       </Router>
     </>

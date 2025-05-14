@@ -1,58 +1,71 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Link as ScrollLink, scroller } from 'react-scroll';
-import './Navbar.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const location = useLocation();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const scrollOrNavigate = (id) => {
-    closeMobileMenu();
-    if (location.pathname === '/') {
-      scroller.scrollTo(id, { smooth: true, duration: 500 });
-    } else {
-      // Ir a home y hacer scroll después
-      window.location.href = `/#${id}`;
-    }
-  };
-
   return (
-    <nav className='navbar'>
-      <div className='navbar-container'>
-        <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-          <i className='fas fa-robot'></i> AI Ethics
+    <nav className="navbar">
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+          <i className="fas fa-robot"></i> AI Ethics
         </Link>
-        <div className='menu-icon' onClick={handleClick}>
-          <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+        <div className="menu-icon" onClick={handleClick}>
+          <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>
-        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-          <li className='nav-item'>
-            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <li className="nav-item">
+            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
               Home
             </Link>
           </li>
-          <li className='nav-item'>
-            <div className='nav-links' onClick={() => scrollOrNavigate('magazine1')}>
+          <li className="nav-item">
+            <Link
+              to="/#magazine1"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
               Revista
-            </div>
+            </Link>
           </li>
-          <li className='nav-item'>
-            <div className='nav-links' onClick={() => scrollOrNavigate('hero-section')}>
+          <li className="nav-item">
+            <Link
+              to="/#hero-section"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
               Autores
-            </div>
+            </Link>
           </li>
-          <li className='nav-item'>
-            <div className='nav-links' onClick={() => scrollOrNavigate('referencias-home')}>
+          <li className="nav-item">
+            <Link
+              to="/codigo-etico-1"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
+              Código Ético 1
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/codigo-etico-2"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
+              Código Ético 2
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/referencias"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
               Referencias
-            </div>
-          </li>
-          <li className='nav-item'>
-            <Link to='/graphic' className='nav-links' onClick={closeMobileMenu}>
-              Encuesta
             </Link>
           </li>
         </ul>
