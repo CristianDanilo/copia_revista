@@ -130,43 +130,6 @@ const CodigoEticoParte2 = () => {
           </tr>
         </tbody>
       </table>
-
-      <section>
-        <h2>Referencias Bibliográficas</h2>
-        <ul>
-          <li>
-            González Arencibia, M., & Martínez Cardero, D. (2020). Dilemas
-            éticos en la inteligencia artificial. <em>Economía y Sociedad</em>,
-            25(57), 93–109.
-          </li>
-          <li>
-            Oviedo Guevara, L. G. (2023). Dilema de la inteligencia artificial:
-            pensamiento crítico y generaciones digitales.{" "}
-            <em>Realidad y Reflexión</em>, 1(58), 69–83.
-          </li>
-          <li>
-            Ramírez Plascencia, D., & Alonzo González, R. M. (2024). Ponderando
-            los dilemas éticos y legales de la IA. <em>Textos y Contextos</em>,
-            1(29).
-          </li>
-          <li>
-            Muriel, F. A. Z., Zapata, S. M., & Zapata, D. M. (2024). Dilemas
-            éticos desde el transhumanismo. <em>Dialnet</em>.
-          </li>
-          <li>
-            Cantú-Martínez, P. C. (2024). IA y sus connotaciones éticas.{" "}
-            <em>Revista Iberoamericana de Bioética</em>, (25), 01–11.
-          </li>
-          <li>
-            Bejarano, J. J. B. (2024). Ética de la IA autónoma.{" "}
-            <em>Universo-IA.com</em>.
-          </li>
-          <li>
-            Grigore, A. E. (2022). Derechos humanos e inteligencia artificial.{" "}
-            <em>IUS ET SCIENTIA</em>, 8(1), 164–175.
-          </li>
-        </ul>
-      </section>
     </div>
   );
 };
