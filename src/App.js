@@ -8,7 +8,7 @@ import Graphic from './components/pages/Graphic';
 import Referencias from './components/pages/Referencias';
 import CodigoEticoParte1 from './components/pages/CodigoEticoParte1';
 import CodigoEticoParte2 from './components/pages/CodigoEticoParte2';
-import ReferenciasBibliograficas from './components/pages/ReferenciasBibliograficas';
+import CodigoEtico3 from './components/pages/CodigoEticoParte3';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path="/referencias" component={Referencias} />
           <Route path='/codigo-etico-1' component={CodigoEticoParte1} />
           <Route path='/codigo-etico-2' component={CodigoEticoParte2} />
-          <Route path="/referencias" component={ReferenciasBibliograficas} />
+          <Route path="/codigo-etico-3" component={CodigoEtico3} />
         </Switch>
       </Router>
     </>

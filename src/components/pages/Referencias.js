@@ -231,94 +231,123 @@ const referencias = [
 ];
 
 export default function Referencias() {
-    const location = useLocation();
-    const { page } = queryString.parse(location.search);
-    const initialPage = parseInt(page) || 0;
-    const [index, setIndex] = useState(initialPage);
-    const [animacion, setAnimacion] = useState("fadeIn");
-  
-    const ref = referencias[index];
-  
-    const cambiarReferencia = (dir) => {
-      setAnimacion("slideOut");
-      setTimeout(() => {
-        const nuevaPos = (index + dir + referencias.length) % referencias.length;
-        setIndex(nuevaPos);
-        setAnimacion("slideIn");
-      }, 200);
-    };
-  
-    const extraerURL = (texto) => {
-      const match = texto.match(/https?:\/\/[^\s]+/);
-      return match ? match[0] : null;
-    };
-  
-    const textoSinURL = (texto) => {
-      return texto.replace(/https?:\/\/[^\s]+/, "").trim();
-    };
-  
-    return (
-      <div className="referencias-container">
-        <button className="btn-lateral fixed izquierda" onClick={() => cambiarReferencia(-1)}>
-          &larr;
-        </button>
-  
-        <div className={`referencia-card ${animacion}`}>
-          <h2>Referente #{ref.numero}</h2>
-          <h3>{ref.titulo}</h3>
-  
-          {ref.autorAnaliza && (
-            <div className="referencia-section">
-              <strong>Elaborado/Analizado por:</strong> {ref.autorAnaliza}
-            </div>
-          )}
-          {ref.tituloArticulo && (
-            <div className="referencia-section">
-              <strong>Título del artículo:</strong> {ref.tituloArticulo}
-            </div>
-          )}
-          {ref.tipo && (
-            <div className="referencia-section">
-              <strong>Tipo:</strong> {ref.tipo}
-            </div>
-          )}
-          {ref.autores && (
-            <div className="referencia-section">
-              <strong>Autores:</strong> {ref.autores}
-            </div>
-          )}
-          {ref.publicadoEn && (
-            <div className="referencia-section">
-              <strong>Publicado en:</strong> {ref.publicadoEn}
-            </div>
-          )}
-          {ref.palabrasClave && (
-            <div className="referencia-section">
-              <strong>Palabras clave:</strong> {ref.palabrasClave}
-            </div>
-          )}
+  const location = useLocation();
+  const { page } = queryString.parse(location.search);
+  const initialPage = parseInt(page) || 0;
+  const [index, setIndex] = useState(initialPage);
+  const [animacion, setAnimacion] = useState("fadeIn");
+
+  const ref = referencias[index];
+
+  const cambiarReferencia = (dir) => {
+    setAnimacion("slideOut");
+    setTimeout(() => {
+      const nuevaPos = (index + dir + referencias.length) % referencias.length;
+      setIndex(nuevaPos);
+      setAnimacion("slideIn");
+    }, 200);
+  };
+
+  const extraerURL = (texto) => {
+    const match = texto.match(/https?:\/\/[^\s]+/);
+    return match ? match[0] : null;
+  };
+
+  const textoSinURL = (texto) => {
+    return texto.replace(/https?:\/\/[^\s]+/, "").trim();
+  };
+
+  return (
+    <div className="referencias-container">
+      <button
+        className="btn-lateral fixed izquierda"
+        onClick={() => cambiarReferencia(-1)}
+      >
+        &larr;
+      </button>
+
+      <div className={`referencia-card ${animacion}`}>
+        <h2>Referente #{ref.numero}</h2>
+        <h3>{ref.titulo}</h3>
+
+        {ref.autorAnaliza && (
           <div className="referencia-section">
-            <strong>Referencia:</strong>
-            <span>
-              {textoSinURL(ref.referencia)}{" "}
-              {extraerURL(ref.referencia) && (
-                <a href={extraerURL(ref.referencia)} target="_blank" rel="noreferrer">
-                  {extraerURL(ref.referencia)}
-                </a>
-              )}
-            </span>
+            <strong>Elaborado/Analizado por:</strong> {ref.autorAnaliza}
           </div>
+        )}
+        {ref.tituloArticulo && (
+          <div className="referencia-section">
+            <strong>Título del artículo:</strong> {ref.tituloArticulo}
+          </div>
+        )}
+        {ref.tipo && (
+          <div className="referencia-section">
+            <strong>Tipo:</strong> {ref.tipo}
+          </div>
+        )}
+        {ref.autores && (
+          <div className="referencia-section">
+            <strong>Autores:</strong> {ref.autores}
+          </div>
+        )}
+        {ref.publicadoEn && (
+          <div className="referencia-section">
+            <strong>Publicado en:</strong> {ref.publicadoEn}
+          </div>
+        )}
+        {ref.palabrasClave && (
+          <div className="referencia-section">
+            <strong>Palabras clave:</strong> {ref.palabrasClave}
+          </div>
+        )}
+        <div className="referencia-section">
+          <strong>Referencia:</strong>
+          <span>
+            {textoSinURL(ref.referencia)}{" "}
+            {extraerURL(ref.referencia) && (
+              <a
+                href={extraerURL(ref.referencia)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {extraerURL(ref.referencia)}
+              </a>
+            )}
+          </span>
+        </div>
+        <div className="referencia-section">
+          <strong>Resumen / Análisis:</strong>
           <div className="referencia-section">
             <strong>Resumen / Análisis:</strong>
-            <pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit" }}>
-              {ref.resumen}
-            </pre>
+            <div style={{ whiteSpace: "pre-wrap", fontFamily: "inherit" }}>
+              {ref.resumen.split(/(\s+)/).map((part, idx) => {
+                const urlMatch = part.match(/^https?:\/\/[^\s]+$/);
+                if (urlMatch) {
+                  return (
+                    <a
+                      key={idx}
+                      href={urlMatch[0]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {urlMatch[0]}
+                    </a>
+                  );
+                } else {
+                  return part;
+                }
+              })}
+            </div>
           </div>
         </div>
-  
-        <button className="btn-lateral fixed derecha" onClick={() => cambiarReferencia(1)}>
-          &rarr;
-        </button>
       </div>
-    );
-  }
+
+      <button
+        className="btn-lateral fixed derecha"
+        onClick={() => cambiarReferencia(1)}
+      >
+        &rarr;
+      </button>
+    </div>
+  );
+}
