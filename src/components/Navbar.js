@@ -43,6 +43,15 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
+              to="/graphic"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
+              Graficas
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
               to="/codigo-etico-1"
               className="nav-links"
               onClick={closeMobileMenu}
